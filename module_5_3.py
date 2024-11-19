@@ -11,43 +11,54 @@ class House:
             return self.floors == other.floors
         elif isinstance(other, int):
             return self.floors == other
-        return NotImplemented
-
-    def __ne__(self, other):
-        return not self.__eq__(other)
+        return False
 
     def __lt__(self, other):
         if isinstance(other, House):
             return self.floors < other.floors
+        elif isinstance(other, int):
+            return self.floors < other
         return NotImplemented
 
     def __le__(self, other):
         if isinstance(other, House):
             return self.floors <= other.floors
+        elif isinstance(other, int):
+            return self.floors <= other
         return NotImplemented
 
     def __gt__(self, other):
         if isinstance(other, House):
             return self.floors > other.floors
+        elif isinstance(other, int):
+            return self.floors > other
         return NotImplemented
 
     def __ge__(self, other):
         if isinstance(other, House):
             return self.floors >= other.floors
+        elif isinstance(other, int):
+            return self.floors >= other
         return NotImplemented
+
+    def __ne__(self, other):
+        if isinstance(other, House):
+            return self.floors != other.floors
+        elif isinstance(other, int):
+            return self.floors != other
+        return True
 
     def __add__(self, value):
         if isinstance(value, int):
             self.floors += value
             return self
-        return NotImplemented
+        raise TypeError("Можно добавлять только целые числа.")
 
     def __radd__(self, value):
         return self.__add__(value)
 
     def __iadd__(self, value):
         return self.__add__(value)
-
 
 
 if __name__ == "__main__":
